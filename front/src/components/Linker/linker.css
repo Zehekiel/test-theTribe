@@ -1,0 +1,6 @@
+.link{
+  color: white;
+  overflow: hidden;
+  text-decoration: none;
+  pointer-events: fill;
+}

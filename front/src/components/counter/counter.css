@@ -1,0 +1,18 @@
+.CounterRow {
+  display: flex;
+  flex-direction: row;
+  border-radius: 13px;
+  padding: 5px;
+  margin: 4px;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  width: 9vw;
+  height: 3vh;
+}
+
+
+.CounterValue {
+  color: black;
+  font-size: 20px;
+}
