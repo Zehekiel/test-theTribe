@@ -16,18 +16,19 @@ export default function Counter (props: {
   }
 
   return (
-    <span className='CounterRow'>      
+    <span className='CounterRow' data-testid='counter'>      
       <HiMinus
         size={20}
         onClick={() => onPressMinus()}
         color='black'
+        data-testid='counter-minus'
       />  
-        <p className='CounterValue'>{props.value }</p>
+        <p className='CounterValue' data-testid='counter-value'>{props.value }</p>
       <HiPlus
         size={24}
         onClick={() => props.onPressPlus()}
         color='black'
-
+        data-testid='counter-plus'
       />
     </span>
   )

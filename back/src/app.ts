@@ -1,8 +1,10 @@
 
 import express from 'express';
+const  userRoutes = require('userRoutes')
+const characterRouter = require('./route/character')
+require('../models/connection')
 
-import routes from './route';
-
+const usersRouter = require('./routes/users');
 class App {
   public server;
 
@@ -18,7 +20,8 @@ class App {
   }
 
   routes() {
-    this.server.use(routes);
+    this.server.use(userRoutes);
+    this.server.use(characterRouter);
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../logo.svg';
+import logo from '../../asset/logo.svg';
 import './header.css';
 import Linker from '../Linker/linker';
 
@@ -7,7 +7,7 @@ function Header() {
   const [log, setLog]= useState(false)
 
   return(
-  <header className="App-header">
+  <header className="App-header" data-testid='header'>
     <Linker to='/' >
       <span className="header-title">
         <img src={logo} className="App-logo" alt="logo" />

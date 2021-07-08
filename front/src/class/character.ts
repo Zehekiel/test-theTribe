@@ -15,12 +15,12 @@ export class Characters {
 
   level: number = 1
 
+  lastFight: Date= new Date()
+
   historic: Array<{
     turnCount: number // (start at 1)
     attacksValue: number // Attack's value for both characters
     healthPointSubstracted: number // Health point substracted for both characters
     result: 'win' | 'loose'
   }> = []
-
-  available: boolean = false
 }
