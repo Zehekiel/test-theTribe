@@ -1,8 +1,5 @@
 .logContainer{
-  width: 100vw;
   display: flex;
-  flex-direction: column;
-  flex: 1; 
   justify-content: center;
   align-items: center;
 }
@@ -10,7 +7,7 @@
 .logSection{
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 50%;
   justify-content: center;
   align-items: center;
   margin-bottom: 5%;

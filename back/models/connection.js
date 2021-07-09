@@ -15,7 +15,7 @@ mongoose.connect(`mongodb+srv://${user}:${password}@cluster0.hqyym.mongodb.net/$
 options,
 function(err) {
   if (err) {
-    console.log(`Connection Database error : ${err}`);
+    console.error(`Connection Database error : ${err}`);
   } else {
     console.info('-_-_-_-_-_-_-_-_ MONGODB CONNECTED -_-_-_-_-_-_-_-_');
   }

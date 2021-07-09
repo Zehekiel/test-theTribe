@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import postCharacter from '../../API/postCharacter'
 import { Characters } from '../../class/character'
-import Counter from '../../components/counter/counter'
-import ErrorText from '../../components/errorText/errorText'
+import Counter from '../counter/counter'
+import ErrorText from '../errorText/errorText'
 import { useAppDispatch, useAppSelector } from '../../hook'
 import { addCharacter } from '../../toolkit/userCharacterList'
 import './newCharacter.css'
 
-function NewCharacter() {
+function SkillsDispatcher() {
   const [newCharacter, setNewCharacter] = useState<Characters>(new Characters())
   const [errorMessage, setErrorMessage] = useState('')
   const [showSaveButton, setShowSaveButton] = useState(false)
@@ -191,4 +191,4 @@ function NewCharacter() {
   )
 }
 
-export default NewCharacter
+export default SkillsDispatcher

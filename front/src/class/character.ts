@@ -1,5 +1,5 @@
 export class Characters {
-  id: number = 0
+  _id: string = ''
 
   name: string = ''
 
@@ -15,7 +15,7 @@ export class Characters {
 
   level: number = 1
 
-  lastFight: Date= new Date()
+  lastFight: number= 0
 
   historic: Array<{
     turnCount: number // (start at 1)

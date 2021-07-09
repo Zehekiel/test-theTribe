@@ -24,7 +24,7 @@ function App() {
               <LogInLogOut />
             </Route>
 
-            <Route path="/characters">
+            <Route path="/characterlist">
               <CharactersList />
             </Route>
 
@@ -32,7 +32,7 @@ function App() {
               <NewCharacter />
             </Route>
 
-            <Route path="/character">
+            <Route path="/character/:id">
               <Character />
             </Route>
 

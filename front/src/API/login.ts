@@ -2,10 +2,10 @@ import { ProviderApi } from './../constant/type';
 import { API_URL_USER } from "../constant/env"
 
 
-function subscription(nickname: string, password: string): Promise<ProviderApi>{
+function logIn(nickname: string, password: string): Promise<ProviderApi>{
   const body = {nickname: nickname, password: password}
 
-  return fetch(`${API_URL_USER}/adduser`, {
+  return fetch(`${API_URL_USER}/login`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -28,4 +28,4 @@ function subscription(nickname: string, password: string): Promise<ProviderApi>{
     })
 }
 
-export default subscription
+export default logIn

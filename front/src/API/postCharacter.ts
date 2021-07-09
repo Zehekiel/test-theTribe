@@ -1,11 +1,25 @@
 import { ProviderApi } from './../constant/type';
-import { API_URL_USER } from "../constant/env"
+import { API_URL_CHARACTER } from "../constant/env"
 
 
-function subscription(nickname: string, password: string): Promise<ProviderApi>{
-  const body = {nickname: nickname, password: password}
+function postCharacter(
+  name: string,
+  health: number,
+  attack: number,
+  defense: number,
+  magik: number,
+  token: string
+): Promise<ProviderApi>{
+  const body = {
+    name: name,
+    health: health,
+    attack: attack,
+    defense: defense,
+    magik: magik,
+    token: token
+  }
 
-  return fetch(`${API_URL_USER}/adduser`, {
+  return fetch(`${API_URL_CHARACTER}/addcharacter`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -23,9 +37,9 @@ function subscription(nickname: string, password: string): Promise<ProviderApi>{
       return { success: false, message:  value.message}
     })
     .catch((e) => {
-      console.error('error subscription response.json', e)
+      console.error('error postCharacter response.json', e)
       return { success: false, message: e }
     })
 }
 
-export default subscription
+export default postCharacter

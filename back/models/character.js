@@ -9,7 +9,7 @@ const characterSchema = mongoose.Schema({
   magik :       Number,
   level :       Number,
   historic:     Array,
-  lastFight:    Date,
+  lastFight:    Number,
   });
 
   const CharacterModel = mongoose.model('characters', characterSchema);
