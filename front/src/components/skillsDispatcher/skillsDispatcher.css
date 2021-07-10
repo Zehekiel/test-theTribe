@@ -4,9 +4,8 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  width: 100vw;
   padding: 3%;
-  height: 100vh;
+  height: 100%;
 }
 
 .stat {
@@ -16,7 +15,7 @@
   align-items: center;
   background-color: rgb(55, 70, 70);
   border-radius: 100px;
-  width: 33vw;
+  min-width: 33vw;
   padding: 0.1vh 3vw;
   margin-top: 2%;
 }

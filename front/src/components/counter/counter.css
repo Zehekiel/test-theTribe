@@ -3,11 +3,11 @@
   flex-direction: row;
   border-radius: 13px;
   padding: 5px;
-  margin: 4px;
+  margin: 4px 10px;
   background-color: white;
   justify-content: space-between;
   align-items: center;
-  width: 9vw;
+  min-width: 9vw;
   height: 3vh;
 }
 

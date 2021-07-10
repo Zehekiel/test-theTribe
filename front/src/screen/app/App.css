@@ -1,3 +1,4 @@
 .App {
-  flex: 1;
+  background-color: #505c74;
+  min-height: 90vh;
 }

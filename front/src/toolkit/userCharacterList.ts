@@ -4,10 +4,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export const characterListSlice = createSlice({
   name: 'characterList',
   initialState: {
-    value: [],
+    value: new Array()
   },
   reducers: {
-    saveList: (state, action: PayloadAction<any>) => {
+    saveList: (state, action: PayloadAction<Array<Characters>>) => {
       state.value = action.payload
     },
     addCharacter: (

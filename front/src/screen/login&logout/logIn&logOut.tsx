@@ -11,12 +11,13 @@ import { BreakPoint, isLargerThan } from '../../constant/breakpoint'
 import { saveList } from '../../toolkit/userCharacterList'
 import { ProviderApi } from '../../constant/type'
 import logIn from '../../API/login'
+import { UserApi } from '../../class/userApi'
 
 function LogInLogOut() {
-  const [userLog, setUserLog] = useState(new User())
-  const [newUser, setNewUser] = useState(new User())
-  const [errorSubscriptionMessage, setErrorSubscriptionMessage] = useState('')
-  const [errorLogMessage, setErrorLogMessage] = useState('')
+  const [ userLog, setUserLog ] = useState(new UserApi())
+  const [ newUser, setNewUser ] = useState(new User())
+  const [ errorSubscriptionMessage, setErrorSubscriptionMessage ] = useState('')
+  const [ errorLogMessage, setErrorLogMessage ] = useState('')
 
   const history = useHistory()
   const dispatch = useAppDispatch()
@@ -87,10 +88,11 @@ function LogInLogOut() {
       await logIn(userLog.nickname, userLog.password).then(
         (apiresponse: ProviderApi) => {
           if (apiresponse.success) {
-            const characterList: User = JSON.parse(apiresponse.message)
+            const user: UserApi = JSON.parse(apiresponse.message)
             setErrorLogMessage('')
-            dispatch(saveToken(apiresponse.message))
-            dispatch(saveList(characterList.characterId))
+            dispatch(saveToken(user.token))
+            dispatch(saveList(user.characterId))
+            console.log('user.characterId', user.characterId)
             history.push('/characterlist')
           } else {
             setErrorLogMessage(apiresponse.message)

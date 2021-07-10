@@ -18,7 +18,7 @@ function CharacterCard(props: { oneCharacter: Characters }) {
     magik,
     level,
     lastFight,
-    _id,
+    _id
   } = props.oneCharacter
 
   const available = (): boolean => {
@@ -30,40 +30,42 @@ function CharacterCard(props: { oneCharacter: Characters }) {
   }
 
   return (
-    <Linker to={`/character/${_id}`}>
-      <article className="characterCard">
-        <section className="characterIdentity" id="identity">
-          <h2 id="characterName">{name}</h2>
-          <p className="characterStat">
-            LVL: <strong>{level}</strong>{' '}
-          </p>
-          <p className="characterStat">PC: {skillPoint}</p>
-          {available() ? (
-            <GiSwordman color="lightgreen" id="circle" size="2em" />
-          ) : (
-            <RiZzzFill color="red" id="circle" size="2em" />
-          )}
-        </section>
+    <li className="characterCard">
+      <Linker to={`/character/${_id}`}>
+        <article >
+          <section className="characterIdentity" id="identity">
+            <h2 id="characterName">{name}</h2>
+            <p className="characterStat">
+            LVL <strong>{level}</strong>{' '}
+            </p>
+            <p className="characterStat">PC {skillPoint}</p>
+            {available() ? (
+              <GiSwordman color="lightgreen" id="icon" size="2em" />
+            ) : (
+              <RiZzzFill color="red" id="icon" size="2em" />
+            )}
+          </section>
 
-        <section className="characterIdentity">
-          <p className="characterStat">
-            PV: <strong>{health}</strong>
-          </p>
-          <p className="characterStat">
-            PM: <strong>{magik}</strong>
-          </p>
-        </section>
+          <section className="characterIdentity">
+            <p className="characterStat">
+            PV <strong>{health}</strong>
+            </p>
+            <p className="characterStat">
+            PM <strong>{magik}</strong>
+            </p>
+          </section>
 
-        <section className="characterIdentity">
-          <p className="characterStat">
-            ATT: <strong>{attack}</strong>
-          </p>
-          <p className="characterStat">
-            DEF: <strong>{defense}</strong>
-          </p>
-        </section>
-      </article>
-    </Linker>
+          <section className="characterIdentity">
+            <p className="characterStat">
+            ATT <strong>{attack}</strong>
+            </p>
+            <p className="characterStat">
+            DEF <strong>{defense}</strong>
+            </p>
+          </section>
+        </article>
+      </Linker>
+    </li>
   )
 }
 

@@ -1,13 +1,20 @@
 .characterCard {
   background-color: rgb(139, 56, 0);
-  padding: 2%;
-  width: 50%;
+  padding: 4%;
+  min-width: 30vw;
   border-radius: 15px 0 15px 0;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.493);
+  justify-content: center;
+  align-items: center;
+  margin: 10px
 }
 
-#circle {
-  position: relative;
+#icon {
   z-index: 100;
+}
+
+#characterListTitle {
+  text-shadow: 2px 2px black;
 }
 
 .characterIdentity {
@@ -18,7 +25,7 @@
 }
 
 #identity {
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
@@ -30,8 +37,15 @@
   background-color: black;
   text-align: center;
   width: 6vw;
+  box-shadow: 4px 4px rgba(85, 85, 85, 0.493);
 }
 
 #characterName {
   margin: 5px;
+  text-shadow:2px 2px black;
+}
+
+li::marker {
+  content: none;
+  color: aqua;
 }

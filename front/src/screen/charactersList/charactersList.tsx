@@ -11,13 +11,13 @@ function CharactersList() {
 
   return (
     <main className="characterListContainer">
-      <h1>Liste des personnages</h1>
-      <ul>
+      <h1 id='characterListTitle'>Liste des personnages</h1>
+      <ul id='list'>
         {characterList.map((personage: Characters) => (
           <CharacterCard oneCharacter={personage} key={personage.name} />
         ))}
       </ul>
-      <button onClick={() => history.push('newcharacter')}>
+      <button onClick={() => history.push('character/0')} id='characterListCreateButton'>
         Créer un personnage
       </button>
     </main>

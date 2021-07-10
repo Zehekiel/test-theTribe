@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const characterModel = require('../models/character')
 const userModel = require('../models/users')
+const ObjectID = require('mongodb').ObjectID;
 
 /* GET character. */
 router.post('/addcharacter', async function(req, res, next) {
@@ -25,15 +26,15 @@ router.post('/addcharacter', async function(req, res, next) {
 
     newCharacter.save()
     .then((savedCharacter)=> {
-      const user = userModel.updateOne(
+      userModel.updateOne(
         {token: req.body.token},
+        
         {
           $push: {
-            characterId: savedCharacter.id
+            characterId: ObjectID(savedCharacter._id)
           }
         })
-        .exec()
-      res.json({success: true, message: JSON.stringify(savedCharacter)})
+        .then(()=> (res.json({success: true, message: JSON.stringify(savedCharacter)})))
     })
     .catch((e)=> {
       console.error('error saveUser', e)

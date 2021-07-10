@@ -4,9 +4,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  width: 100vw;
-  padding: 3%;
-  height: 100vh;
+  background-color: #505c74;
 }
 
 .stat {
@@ -16,14 +14,23 @@
   align-items: center;
   background-color: rgb(55, 70, 70);
   border-radius: 100px;
-  width: 33vw;
-  padding: 0.1vh 3vw;
+  padding: 0.1vh 2vw;
   margin-top: 2%;
+}
+
+#inputName{
+  padding: 0.4%;
+  color: black;
+  border-radius: 5px;
+  margin: 0.5%;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .statName {
   font-size: 1.1rem;
   width: 25%;
+  padding-right: 10px;;
 }
 
 .statCost {
@@ -32,8 +39,17 @@
 }
 
 .saveButton {
-  margin-top: 5%;
+  margin-top: 2%;
   background-color: rgb(9, 155, 9);
+  color: white;
+  font-size: 1rem;
+  border-radius: 100px;
+  padding: 0.3% 2%;
+}
+
+.deleteButton {
+  margin-top: 2%;
+  background-color: rgb(155, 9, 9);
   color: white;
   font-size: 1rem;
   border-radius: 100px;

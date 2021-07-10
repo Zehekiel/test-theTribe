@@ -1,3 +1,5 @@
+import { FightReport } from './fightReport'
+
 export class Characters {
   _id: string = '';
 
@@ -17,10 +19,5 @@ export class Characters {
 
   lastFight: number = 0;
 
-  historic: Array<{
-    turnCount: number; // (start at 1)
-    attacksValue: number; // Attack's value for both characters
-    healthPointSubstracted: number; // Health point substracted for both characters
-    result: 'win' | 'loose';
-  }> = [];
+  historic: Array<FightReport> = [];
 }
