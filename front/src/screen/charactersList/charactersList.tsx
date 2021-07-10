@@ -10,16 +10,16 @@ function CharactersList() {
   const history = useHistory()
 
   return (
-    <main className='characterListContainer'>
+    <main className="characterListContainer">
       <h1>Liste des personnages</h1>
       <ul>
-        {
-          characterList.map((personage: Characters)=>(
-            <CharacterCard oneCharacter={personage} key={personage.name}/>
-          ))
-        }
+        {characterList.map((personage: Characters) => (
+          <CharacterCard oneCharacter={personage} key={personage.name} />
+        ))}
       </ul>
-      <button onClick={()=> history.push('newcharacter')}>Créer un personnage</button>
+      <button onClick={() => history.push('newcharacter')}>
+        Créer un personnage
+      </button>
     </main>
   )
 }

@@ -1,16 +1,16 @@
 import React, { ReactElement } from 'react'
-import  { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './linker.css'
 
-type LinkerProps= {
-  to: string,
-  children?: ReactElement[] | ReactElement,
-}
+type LinkerProps = {
+  to: string;
+  children?: ReactElement[] | ReactElement;
+};
 
-function Linker (props: LinkerProps){
+function Linker(props: LinkerProps) {
   const { to, children } = props
   return (
-    <Link className='link' to={to}>
+    <Link className="link" to={to}>
       {children}
     </Link>
   )

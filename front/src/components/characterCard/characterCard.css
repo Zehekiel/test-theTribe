@@ -1,38 +1,37 @@
-.characterCard{
+.characterCard {
   background-color: rgb(139, 56, 0);
   padding: 2%;
   width: 50%;
   border-radius: 15px 0 15px 0;
 }
 
-#circle{
+#circle {
   position: relative;
   z-index: 100;
 }
 
-.characterIdentity{
+.characterIdentity {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-#identity{
-  border-bottom:1px solid black;
+#identity {
+  border-bottom: 1px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.characterStat{
+.characterStat {
   margin: 5px;
   padding: 5px 10px;
   border-radius: 15px;
   background-color: black;
-  text-align: center ;
+  text-align: center;
   width: 6vw;
 }
 
-#characterName{
+#characterName {
   margin: 5px;
-
 }

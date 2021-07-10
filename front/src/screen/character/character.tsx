@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-
 function Character() {
   let id = useParams()
   console.log('id', id)

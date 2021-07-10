@@ -1,25 +1,23 @@
 import { API_URL_USER } from './../constant/env'
 import { ProviderApi } from './../constant/type'
 
-
-function getCharacterList( token: string ): Promise<ProviderApi>{
-
+function getCharacterList(token: string): Promise<ProviderApi> {
   return fetch(`${API_URL_USER}/getcharacterlist`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(token)
+    body: JSON.stringify(token),
   })
-    .then(response => response.json())
+    .then((response) => response.json())
     .then((value: any) => {
-      if (value.success){
+      if (value.success) {
         return {
           success: true,
-          message:  value.message
+          message: value.message,
         }
-      }        
-      return { success: false, message:  value.message}
+      }
+      return { success: false, message: value.message }
     })
     .catch((e) => {
       console.error('error postCharacter response.json', e)

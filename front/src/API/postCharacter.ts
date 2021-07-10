@@ -1,7 +1,6 @@
 import { ProviderApi } from './../constant/type'
 import { API_URL_CHARACTER } from '../constant/env'
 
-
 function postCharacter(
   name: string,
   health: number,
@@ -9,14 +8,14 @@ function postCharacter(
   defense: number,
   magik: number,
   token: string
-): Promise<ProviderApi>{
+): Promise<ProviderApi> {
   const body = {
     name: name,
     health: health,
     attack: attack,
     defense: defense,
     magik: magik,
-    token: token
+    token: token,
   }
 
   return fetch(`${API_URL_CHARACTER}/addcharacter`, {
@@ -24,17 +23,17 @@ function postCharacter(
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   })
-    .then(response => response.json())
+    .then((response) => response.json())
     .then((value: any) => {
-      if (value.success){
+      if (value.success) {
         return {
           success: true,
-          message:  value.message
+          message: value.message,
         }
-      }        
-      return { success: false, message:  value.message}
+      }
+      return { success: false, message: value.message }
     })
     .catch((e) => {
       console.error('error postCharacter response.json', e)

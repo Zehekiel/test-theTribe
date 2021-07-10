@@ -12,34 +12,30 @@ function Header() {
   const history = useHistory()
   const dispatch = useAppDispatch()
 
-  function onClickLogOut (){
+  function onClickLogOut() {
     dispatch(deleteToken())
     history.push('/')
   }
 
-  return(
-    <header className="App-header" data-testid='header'>
-      <Linker to='/' >
+  return (
+    <header className="App-header" data-testid="header">
+      <Linker to="/">
         <span className="header-title">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-          React RPG Game
-          </p>
+          <p>React RPG Game</p>
         </span>
       </Linker>
 
-      <Linker to='/'>
-        <button 
-          className="header-button" 
-          style={{display: token !=='' ? 'inline' : 'none'}}
-          onClick= {()=> onClickLogOut() }
-        > 
-        Déconnexion
+      <Linker to="/">
+        <button
+          className="header-button"
+          style={{ display: token !== '' ? 'inline' : 'none' }}
+          onClick={() => onClickLogOut()}
+        >
+          Déconnexion
         </button>
       </Linker>
-
     </header>
-
   )
 }
 

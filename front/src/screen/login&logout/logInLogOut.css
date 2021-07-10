@@ -1,10 +1,10 @@
-.logContainer{
+.logContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logSection{
+.logSection {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -13,20 +13,20 @@
   margin-bottom: 5%;
 }
 
-.logTitle{
+.logTitle {
   text-align: center;
   font-size: 1.5rem;
-  color: white
+  color: white;
 }
 
-.logInput{
+.logInput {
   padding: 0.6%;
   color: black;
   border-radius: 5px;
   margin: 0.5%;
 }
 
-.logButton{
+.logButton {
   text-align: center;
   color: white;
   border-radius: 5px;

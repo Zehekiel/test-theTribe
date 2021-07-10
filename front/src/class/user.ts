@@ -1,12 +1,11 @@
 export class User {
-  id: number = 0
+  id: number = 0;
 
-  characterId: Array<number>= []
+  characterId: Array<number> = [];
 
-  nickname: string = ''
+  nickname: string = '';
 
-  token: string = ''
+  token: string = '';
 
-  password: string = ''
-
+  password: string = '';
 }

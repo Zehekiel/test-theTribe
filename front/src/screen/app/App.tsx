@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Switch,
-  Route,
-  Router,
-} from 'react-router-dom'
+import { Switch, Route, Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import './App.css'
 import Header from '../../components/header/header'
@@ -17,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router history={history} >
+      <Router history={history}>
         <Header />
         <Switch>
           <Route exact path="/">
@@ -35,11 +31,8 @@ function App() {
           <Route path="/character/:id">
             <Character />
           </Route>
-
         </Switch>
-
       </Router>
-
     </div>
   )
 }

@@ -5,11 +5,11 @@ import tokenSlice from './toolkit/userToken'
 const store = configureStore({
   reducer: {
     userToken: tokenSlice,
-    characterList: characterListSlice
-  }
+    characterList: characterListSlice,
+  },
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store

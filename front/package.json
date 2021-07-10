@@ -15,6 +15,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -32,7 +33,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint-fix": "eslint src/**/*.{ts,tsx} --fix"
+    "lint-fix": "eslint src/**/*.{ts,tsx} --fix",
+    "prettier": "yarn prettier --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +55,8 @@
     ]
   },
   "devDependencies": {
-    "tslint": "^5.12.1",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "prettier": "2.3.2",
+    "tslint": "^5.12.1"
   }
 }
