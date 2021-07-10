@@ -12,7 +12,7 @@ describe('display counter with increment and decrement value', ()=>{
         value= {0}
       />
     )
-      expect(getByTestId('counter-value')).toHaveTextContent('0')
+    expect(getByTestId('counter-value')).toHaveTextContent('0')
   })
 })
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HiPlus, HiMinus } from 'react-icons/hi';
+import { HiPlus, HiMinus } from 'react-icons/hi'
 
 import './counter.css'
 
@@ -23,7 +23,7 @@ export default function Counter (props: {
         color='black'
         data-testid='counter-minus'
       />  
-        <p className='CounterValue' data-testid='counter-value'>{props.value }</p>
+      <p className='CounterValue' data-testid='counter-value'>{props.value }</p>
       <HiPlus
         size={24}
         onClick={() => props.onPressPlus()}

@@ -21,6 +21,6 @@ export class Characters {
     turnCount: number // (start at 1)
     attacksValue: number // Attack's value for both characters
     healthPointSubstracted: number // Health point substracted for both characters
-    result: 'win' | 'loose'
+    result: 'win'|'loose'
   }> = []
 }

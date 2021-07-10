@@ -1,7 +1,7 @@
 import React from 'react'
 import { Characters } from '../../class/character'
-import { GiSwordman } from 'react-icons/gi';
-import { RiZzzFill } from 'react-icons/ri';
+import { GiSwordman } from 'react-icons/gi'
+import { RiZzzFill } from 'react-icons/ri'
 
 import Linker from '../Linker/linker'
 import './characterCard.css'

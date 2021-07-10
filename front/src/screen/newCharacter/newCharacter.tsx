@@ -21,90 +21,90 @@ function NewCharacter() {
     const compute = point / 5
     
     switch (increment) {
-      case true:
-        if (newCharacter.skillPoint - Math.ceil(compute) < 0){
-          return 0
-        } else {
-          if (point === 0 ){
-            return 1
-          } 
-          return Math.ceil(compute)
-        }
-
-      case false:
+    case true:
+      if (newCharacter.skillPoint - Math.ceil(compute) < 0){
+        return 0
+      } else {
         if (point === 0 ){
           return 1
         } 
         return Math.ceil(compute)
       }
+
+    case false:
+      if (point === 0 ){
+        return 1
+      } 
+      return Math.ceil(compute)
+    }
   }
 
   function onClickCounter(key: 'attack' | 'defense' | 'magik', increment: boolean){
-      switch (increment) {
-        case true:
-          if(newCharacter.skillPoint > 0 && skillPointCost(newCharacter[key], increment) !== 0 ){
-            if (newCharacter.skillPoint === 1) {
-              setShowSaveButton(true)
-            } else {
-              setShowSaveButton(false)
-            }
-              setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint-skillPointCost(old[key], increment)}))
-              setNewCharacter(old =>( {...old, [key]: old[key]+1}))
-          } else {
-            setShowSaveButton(true)
-          }
-          break
-
-        case false:
-          if(newCharacter.skillPoint >= 0){
-            setShowSaveButton(false)
-            setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint+skillPointCost(old[key], increment)}))
-            setNewCharacter(old =>( {...old, [key]: old[key]-1}))
-          } else {
-            setShowSaveButton(true)
-          }
-          break
+    switch (increment) {
+    case true:
+      if(newCharacter.skillPoint > 0 && skillPointCost(newCharacter[key], increment) !== 0 ){
+        if (newCharacter.skillPoint === 1) {
+          setShowSaveButton(true)
+        } else {
+          setShowSaveButton(false)
+        }
+        setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint-skillPointCost(old[key], increment)}))
+        setNewCharacter(old =>( {...old, [key]: old[key]+1}))
+      } else {
+        setShowSaveButton(true)
       }
+      break
+
+    case false:
+      if(newCharacter.skillPoint >= 0){
+        setShowSaveButton(false)
+        setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint+skillPointCost(old[key], increment)}))
+        setNewCharacter(old =>( {...old, [key]: old[key]-1}))
+      } else {
+        setShowSaveButton(true)
+      }
+      break
     }
+  }
 
   function onClickCounterHealth(increment: boolean){
     switch (increment) {
-      case true:
-        if(newCharacter.skillPoint > 0){
-          if (newCharacter.skillPoint === 1) {
-            setShowSaveButton(true)
-          } else {
-            setShowSaveButton(false)
-          }
-            setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint-1}))
-            setNewCharacter(old =>( {...old, 'health': old.health+1}))
-        } else {
+    case true:
+      if(newCharacter.skillPoint > 0){
+        if (newCharacter.skillPoint === 1) {
           setShowSaveButton(true)
-        }
-        break;
-    
-      case false:
-        if(newCharacter.skillPoint >= 0){
+        } else {
           setShowSaveButton(false)
-            setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint+1}))
-            setNewCharacter(old =>( {...old, 'health': old.health-1}))
         }
-        break;
+        setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint-1}))
+        setNewCharacter(old =>( {...old, 'health': old.health+1}))
+      } else {
+        setShowSaveButton(true)
+      }
+      break
+    
+    case false:
+      if(newCharacter.skillPoint >= 0){
+        setShowSaveButton(false)
+        setNewCharacter(old =>( {...old, 'skillPoint': old.skillPoint+1}))
+        setNewCharacter(old =>( {...old, 'health': old.health-1}))
+      }
+      break
     }
   }
 
   function isFormIsValid () :boolean{
     if (newCharacter.skillPoint !==0){
-      setErrorMessage("Il reste des points de compétence à attribuer")
+      setErrorMessage('Il reste des points de compétence à attribuer')
       return false
     }
 
     if (newCharacter.name.length ===0){
-      setErrorMessage("Il manque le nom")
+      setErrorMessage('Il manque le nom')
       return false
     }
 
-    setErrorMessage("")
+    setErrorMessage('')
     return true
   }
 

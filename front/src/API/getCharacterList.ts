@@ -1,5 +1,5 @@
-import { API_URL_USER } from './../constant/env';
-import { ProviderApi } from './../constant/type';
+import { API_URL_USER } from './../constant/env'
+import { ProviderApi } from './../constant/type'
 
 
 function getCharacterList( token: string ): Promise<ProviderApi>{

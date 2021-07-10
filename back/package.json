@@ -18,9 +18,5 @@
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
     "uid2": "^0.0.3"
-  },
-  "devDependencies": {
-    "tslint": "^5.12.1",
-    "typescript": "^3.3.3"
   }
 }

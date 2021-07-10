@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useAppSelector } from '../../hook';
-import { useHistory } from 'react-router';
-import { Characters } from '../../class/character';
+import React from 'react'
+import { useAppSelector } from '../../hook'
+import { useHistory } from 'react-router'
+import { Characters } from '../../class/character'
 import './characterList.css'
-import CharacterCard from '../../components/characterCard/characterCard';
+import CharacterCard from '../../components/characterCard/characterCard'
 
 function CharactersList() {
   const characterList = useAppSelector((state) => state.characterList.value)
@@ -14,14 +14,14 @@ function CharactersList() {
       <h1>Liste des personnages</h1>
       <ul>
         {
-          characterList.map((personage: Characters, i: number)=>(
+          characterList.map((personage: Characters)=>(
             <CharacterCard oneCharacter={personage} key={personage.name}/>
           ))
         }
       </ul>
       <button onClick={()=> history.push('newcharacter')}>Créer un personnage</button>
     </main>
-  );
+  )
 }
 
 export default CharactersList

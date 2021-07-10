@@ -1,5 +1,5 @@
-import { ProviderApi } from './../constant/type';
-import { API_URL_CHARACTER } from "../constant/env"
+import { ProviderApi } from './../constant/type'
+import { API_URL_CHARACTER } from '../constant/env'
 
 
 function postCharacter(

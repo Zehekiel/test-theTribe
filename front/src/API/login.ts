@@ -1,5 +1,5 @@
-import { ProviderApi } from './../constant/type';
-import { API_URL_USER } from "../constant/env"
+import { ProviderApi } from './../constant/type'
+import { API_URL_USER } from '../constant/env'
 
 
 function logIn(nickname: string, password: string): Promise<ProviderApi>{

@@ -1,4 +1,4 @@
-import { Characters } from './../class/character';
+import { Characters } from './../class/character'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
