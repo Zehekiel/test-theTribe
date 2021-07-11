@@ -10,6 +10,7 @@ const characterSchema = mongoose.Schema({
   level :       Number,
   historic:     Array,
   lastFight:    Number,
+  userToken:    String,
   });
 
   const CharacterModel = mongoose.model('characters', characterSchema);

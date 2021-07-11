@@ -6,13 +6,12 @@ import { Characters } from '../../class/character'
 import ErrorText from '../../components/errorText/errorText'
 import SkillsDispatcher from '../../components/skillsDispatcher/skillsDispatcher'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { addCharacter } from '../../toolkit/userCharacterList'
+import { addCharacter, deleteOneCharacter } from '../../toolkit/userCharacterList'
 import './character.css'
 
 function Character() {
   const [ newCharacter, setNewCharacter ]= useState<Characters>(new Characters()) 
   const [ errorMessage, setErrorMessage ] = useState('')
-  // const [showSaveButton, setShowSaveButton] = useState(false)
 
   const  params: {id: string, name: string} = useParams()
   const characterId = params.id
@@ -21,7 +20,6 @@ function Character() {
   const history = useHistory()
   const token = useAppSelector((state) => state.userToken.value)
   const characterList = useAppSelector((state) => state.characterList.value)
-  console.log('characterList', characterList)
 
   const dispatch = useAppDispatch()
 
@@ -34,7 +32,6 @@ function Character() {
           return character
         }
       })
-      console.log('findCharacter', findCharacter)
       setNewCharacter(findCharacter[0])
     }
   }, [ params ])
@@ -100,6 +97,17 @@ function Character() {
     }
   }
 
+  async function onClickDeleteCharacter (){
+    await deleteCharacter(characterId, token)
+      .then(async(isDelete)=> {
+        if (isDelete.success){
+          setErrorMessage('')
+          dispatch(deleteOneCharacter(newCharacter._id))
+          history.push('/characterlist')
+        }
+      })
+  }
+
   return (
     <main className="newCharacterContainer">
       <h1>{isNewCharacter? 'Personnaliser un nouveau personnage' : 'Modifier ce personnage'}</h1>
@@ -134,7 +142,7 @@ function Character() {
       </button>
 
       {!isNewCharacter &&
-        <button className="deleteButton" onClick={() => deleteCharacter(token, characterId)}>
+        <button className="deleteButton" onClick={() => onClickDeleteCharacter()}>
           Supprimer ce personnage
         </button>
       }

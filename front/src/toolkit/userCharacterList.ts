@@ -10,6 +10,10 @@ export const characterListSlice = createSlice({
     saveList: (state, action: PayloadAction<Array<Characters>>) => {
       state.value = action.payload
     },
+    deleteOneCharacter: (state, action: PayloadAction<string>) => {
+      const arrayFiltered = state.value.filter((character: Characters)=> character._id !== action.payload)
+      state.value = arrayFiltered
+    },
     addCharacter: (
       state: { value: Array<any> },
       action: PayloadAction<Characters>
@@ -23,6 +27,6 @@ export const characterListSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { saveList, addCharacter, emptyList } = characterListSlice.actions
+export const { saveList, addCharacter, emptyList, deleteOneCharacter } = characterListSlice.actions
 
 export default characterListSlice.reducer
