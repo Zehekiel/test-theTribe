@@ -92,7 +92,6 @@ function LogInLogOut() {
             setErrorLogMessage('')
             dispatch(saveToken(user.token))
             dispatch(saveList(user.characterId))
-            console.log('user.characterId', user.characterId)
             history.push('/characterlist')
           } else {
             setErrorLogMessage(apiresponse.message)

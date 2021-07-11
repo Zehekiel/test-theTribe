@@ -4,6 +4,7 @@ const characterModel = require('../models/character')
 const userModel = require('../models/users')
 const ObjectID = require('mongodb').ObjectID;
 
+
 /* POST character. */
 router.post('/addcharacter', async function(req, res, next) {
   const initialDate = new Date('July 21, 90 23:45:00 GMT+01:00').getTime()
@@ -68,6 +69,24 @@ router.delete('/deletecharacter', async function(req, res) {
   .catch((e)=> {
     console.error('error addcharacter', e)
     res.json({success: false, message: "Problème lors de la suppression du personnage"})
+  })
+});
+
+/* PATCH character. */
+router.patch('/setcharacter', async function(req, res) {
+  await characterModel.updateOne(
+    {_id: ObjectID(req.body.id)},
+    {
+      $set: req.body.skills
+    }
+  )
+  .then(()=>{
+      res.json({success: true, message: 'Personnage modifié'})
+  })
+  .catch((e)=> {
+    console.error('error addcharacter', e)
+    res.header("Access-Control-Allow-Origin", "*")
+    res.json({success: false, message: "Problème lors de la modification du personnage"})
   })
 });
 

@@ -14,7 +14,7 @@ function CharactersList() {
       <h1 id='characterListTitle'>Liste des personnages</h1>
       <ul id='list'>
         {characterList.map((personage: Characters) => (
-          <CharacterCard oneCharacter={personage} key={personage.name} />
+          <CharacterCard oneCharacter={personage} key={personage._id} />
         ))}
       </ul>
       <button onClick={() => history.push('character/0')} id='characterListCreateButton'>

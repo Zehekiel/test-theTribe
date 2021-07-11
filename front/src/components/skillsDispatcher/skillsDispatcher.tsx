@@ -51,7 +51,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
 
     case false:
       if (character.skillPoint >= 0) {
-        setSkills ('skillPoint', character.skillPoint - skillPointCost(character[key], increment))
+        setSkills ('skillPoint', character.skillPoint + skillPointCost(character[key], increment))
         setSkills(key, character[key] - 1 )
       }
       break

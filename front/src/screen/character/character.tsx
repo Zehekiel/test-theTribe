@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import deleteCharacter from '../../API/deleteCharacter'
 import postCharacter from '../../API/postCharacter'
+import setCharacter from '../../API/setCharacter'
 import { Characters } from '../../class/character'
 import ErrorText from '../../components/errorText/errorText'
 import SkillsDispatcher from '../../components/skillsDispatcher/skillsDispatcher'
+import { SettingCharacters } from '../../constant/type'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { addCharacter, deleteOneCharacter } from '../../toolkit/userCharacterList'
+import { addCharacter, deleteOneCharacter, setList } from '../../toolkit/userCharacterList'
 import './character.css'
 
 function Character() {
-  const [ newCharacter, setNewCharacter ]= useState<Characters>(new Characters()) 
+  const [ newCharacter, setNewCharacter ]= useState<Characters>(new Characters())
+  const [ originalCharacter, setOriginalCharacter ]= useState<Characters>(new Characters()) 
+
   const [ errorMessage, setErrorMessage ] = useState('')
 
   const  params: {id: string, name: string} = useParams()
@@ -33,6 +37,7 @@ function Character() {
         }
       })
       setNewCharacter(findCharacter[0])
+      setOriginalCharacter(findCharacter[0])
     }
   }, [ params ])
 
@@ -52,7 +57,7 @@ function Character() {
   }
 
   async function saveNewCharacter() {
-    if (isFormIsValid()) {
+    if (isFormIsValid() && characterList.length < 10) {
       await postCharacter(
         newCharacter.name,
         newCharacter.health,
@@ -73,37 +78,48 @@ function Character() {
     }
   }
 
-  async function setCharacter() {
-    if (isFormIsValid()) {
-      console.log('setCharacter')
+  async function onClickSetCharacter() {
+    if (isFormIsValid() && !Object.is(newCharacter, originalCharacter)) {
+      let body : SettingCharacters = {}
 
-      // await postCharacter(
-      //   newCharacter.name,
-      //   newCharacter.health,
-      //   newCharacter.attack,
-      //   newCharacter.defense,
-      //   newCharacter.magik,
-      //   token
-      // ).then((data) => {
-      //   if (data.success) {
-      //     const newCharacter = JSON.parse(data.message)
-      //     setErrorMessage('')
-      //     dispatch(addCharacter(newCharacter))
-      //     history.push('/characterlist')
-      //   } else {
-      //     setErrorMessage(data.message)
-      //   }
-      // })
+      if (newCharacter.attack !== originalCharacter.attack){
+        body['attack']= newCharacter.attack
+      }
+      if (newCharacter.defense !== originalCharacter.defense){
+        body['defense']= newCharacter.defense
+      }
+      if (newCharacter.health !== originalCharacter.health){
+        body['health']= newCharacter.health
+      }
+      if (newCharacter.magik !== originalCharacter.magik){
+        body['magik']= newCharacter.magik
+      }
+
+      await setCharacter(
+        originalCharacter._id,
+        body,
+        token
+      ).then((data) => {
+        if (data.success) {
+          setErrorMessage('')
+          dispatch(setList(newCharacter))
+          history.push('/characterlist')
+        } else {
+          setErrorMessage(JSON.parse(data.message))
+        }
+      })
     }
   }
 
   async function onClickDeleteCharacter (){
     await deleteCharacter(characterId, token)
-      .then(async(isDelete)=> {
+      .then((isDelete)=> {
         if (isDelete.success){
           setErrorMessage('')
           dispatch(deleteOneCharacter(newCharacter._id))
           history.push('/characterlist')
+        } else {
+          setErrorMessage(isDelete.message)
         }
       })
   }
@@ -128,6 +144,7 @@ function Character() {
           setNewCharacter ( (old) => ({ ...old, ['name']: e.target.value }) )
         }
         id="inputName"
+        disabled={!isNewCharacter}
       />
 
       <SkillsDispatcher 
@@ -137,7 +154,7 @@ function Character() {
       />
 
       <ErrorText text={errorMessage} />
-      <button className="saveButton" onClick={() => isNewCharacter? saveNewCharacter() : setCharacter()}>
+      <button className="saveButton" onClick={() => isNewCharacter? saveNewCharacter() : onClickSetCharacter()}>
         {isNewCharacter? 'Sauvegarder' : 'Sauvegarder les modifications'}
       </button>
 
