@@ -151,6 +151,7 @@ function Character() {
         character={newCharacter}
         setSkills= {(key: 'attack' | 'defense' | 'magik' | 'health', value: number ) => setNewCharacter ((old) => ({ ...old, [key]: value }))
         }
+        isNew={isNewCharacter}
       />
 
       <ErrorText text={errorMessage} />

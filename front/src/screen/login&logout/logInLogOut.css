@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  width: 90vw;
 }
 
 .logSection {
@@ -15,7 +17,7 @@
 
 .logTitle {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: white;
 }
 
@@ -23,14 +25,11 @@
   padding: 0.6%;
   color: black;
   border-radius: 5px;
+  font-size: 1.1rem;
+
   margin: 0.5%;
 }
 
 .logButton {
-  text-align: center;
-  color: white;
-  border-radius: 5px;
   background-color: black;
-  margin-top: 2%;
-  padding: 0.6%;
 }

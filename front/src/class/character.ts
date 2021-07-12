@@ -20,4 +20,6 @@ export class Characters {
   lastFight: number = 0;
 
   historic: Array<FightReport> = [];
+
+  selected: boolean = false
 }

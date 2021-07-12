@@ -7,6 +7,8 @@ import { User } from '../../class/user'
 import ErrorText from '../../components/errorText/errorText'
 import { saveToken } from '../../toolkit/userToken'
 import './logInLogOut.css'
+import '../global.css'
+
 import { BreakPoint, isLargerThan } from '../../constant/breakpoint'
 import { saveList } from '../../toolkit/userCharacterList'
 import { ProviderApi } from '../../constant/type'

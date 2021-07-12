@@ -14,10 +14,20 @@ function CharactersList() {
       <h1 id='characterListTitle'>Liste des personnages</h1>
       <ul id='list'>
         {characterList.map((personage: Characters) => (
-          <CharacterCard oneCharacter={personage} key={personage._id} />
+          <CharacterCard 
+            oneCharacter={personage} 
+            key={personage._id}
+            selected={false}
+            onClickCard={()=> history.push(`/character/${personage._id}`)}
+          />
         ))}
       </ul>
-      <button onClick={() => history.push('character/0')} id='characterListCreateButton'>
+      {characterList.length > 0 &&
+        <button onClick={() => history.push('/findopponent')} id='characterListCreateButton'>
+          Combattre!
+        </button>
+      }
+      <button onClick={() => history.push('/character/0')} id='characterListCreateButton'>
         Créer un personnage
       </button>
     </main>

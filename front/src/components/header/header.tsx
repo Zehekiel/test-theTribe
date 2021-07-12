@@ -6,6 +6,7 @@ import { UserTokenType } from '../../constant/type'
 import { deleteToken } from '../../toolkit/userToken'
 import { useHistory } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook'
+import { emptyList } from '../../toolkit/userCharacterList'
 
 function Header() {
   const token = useAppSelector((state: UserTokenType) => state.userToken.value)
@@ -14,6 +15,7 @@ function Header() {
 
   function onClickLogOut() {
     dispatch(deleteToken())
+    dispatch(emptyList())
     history.push('/')
   }
 

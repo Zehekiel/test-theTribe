@@ -5,11 +5,12 @@ import './skillsDispatcher.css'
 
 type SkillsDispatcherProps = {
   character :Characters,
-  setSkills: Function
+  setSkills: Function,
+  isNew: boolean
 }
 
 function SkillsDispatcher(props: SkillsDispatcherProps) {
-  const { character, setSkills } = props
+  const { character, setSkills, isNew } = props
 
 
   function skillPointCost(point: number, increment: boolean): number {
@@ -85,6 +86,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounterHealth(true)}
           onPressMinus={() => onClickCounterHealth(false)}
+          ableMinus={isNew}
           value={character.health}
         />
         <p className="statCost">1 PC</p>
@@ -95,6 +97,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('attack', true)}
           onPressMinus={() => onClickCounter('attack', false)}
+          ableMinus={isNew}
           value={character.attack}
         />
         <p className="statCost">
@@ -107,6 +110,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('defense', true)}
           onPressMinus={() => onClickCounter('defense', false)}
+          ableMinus={isNew}
           value={character.defense}
         />
         <p className="statCost">
@@ -119,6 +123,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('magik', true)}
           onPressMinus={() => onClickCounter('magik', false)}
+          ableMinus={isNew}
           value={character.magik}
         />
         <p className="statCost">

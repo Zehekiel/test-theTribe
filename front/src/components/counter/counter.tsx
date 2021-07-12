@@ -4,13 +4,16 @@ import { HiPlus, HiMinus } from 'react-icons/hi'
 import './counter.css'
 
 export default function Counter(props: {
-  onPressPlus: Function;
-  onPressMinus: Function;
-  value: number;
+  onPressPlus: Function,
+  onPressMinus: Function,
+  ableMinus: boolean,
+  value: number,
 }) {
-  function onPressMinus() {
-    if (props.value > 0) {
-      props.onPressMinus()
+  const { onPressPlus, onPressMinus,  value, ableMinus } = props
+
+  function onPressMinusIcon() {
+    if (value > 0 && ableMinus) {
+      onPressMinus()
     }
   }
 
@@ -18,16 +21,16 @@ export default function Counter(props: {
     <span className="CounterRow" data-testid="counter">
       <HiMinus
         size={20}
-        onClick={() => onPressMinus()}
+        onClick={() => onPressMinusIcon()}
         color="black"
         data-testid="counter-minus"
       />
       <p className="CounterValue" data-testid="counter-value">
-        {props.value}
+        {value}
       </p>
       <HiPlus
         size={24}
-        onClick={() => props.onPressPlus()}
+        onClick={() => onPressPlus()}
         color="black"
         data-testid="counter-plus"
       />
