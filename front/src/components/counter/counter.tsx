@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HiPlus, HiMinus } from 'react-icons/hi'
+import { HiMinus, HiPlus } from 'react-icons/hi'
 
 import './counter.css'
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Characters } from '../../class/character'
 import Counter from '../counter/counter'
 import './skillsDispatcher.css'
@@ -11,7 +11,14 @@ type SkillsDispatcherProps = {
 
 function SkillsDispatcher(props: SkillsDispatcherProps) {
   const { character, setSkills, isNew } = props
-
+  const [ decrementRight, setDecrementRight ] = useState(
+    {
+      health: { able: isNew, counterClick: 0 },
+      attack: { able: isNew, counterClick: 0 },
+      defense: { able: isNew, counterClick: 0 },
+      magik: { able: isNew, counterClick: 0 }
+    }
+  )
 
   function skillPointCost(point: number, increment: boolean): number {
     const compute = point / 5
@@ -42,18 +49,19 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
     switch (increment) {
     case true:
       if (
-        character.skillPoint > 0 &&
-          skillPointCost(character[key], increment) !== 0
+        character.skillPoint > 0 && skillPointCost(character[key], increment) !== 0
       ) {
         setSkills ('skillPoint', character.skillPoint - skillPointCost(character[key], increment))
         setSkills (key, character[key] + 1 )
+        setDecrementRight((old) => ({ ...old, [key]: { able: true, counterClick: decrementRight[key].counterClick + 1 } }))
       }
       break
 
     case false:
-      if (character.skillPoint >= 0) {
+      if (character.skillPoint >= 0 && decrementRight[key].counterClick > 0) {
         setSkills ('skillPoint', character.skillPoint + skillPointCost(character[key], increment))
         setSkills(key, character[key] - 1 )
+        setDecrementRight((old) => ({ ...old, [key]: { able: true, counterClick: decrementRight[key].counterClick - 1 } }))
       }
       break
     }
@@ -65,13 +73,15 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
       if (character.skillPoint > 0) {
         setSkills ('skillPoint', character.skillPoint - 1) ,
         setSkills('health', character.health + 1 )
+        setDecrementRight((old) => ({ ...old, health: { able: true, counterClick: decrementRight.health.counterClick + 1 } }))
       }
       break
 
     case false:
-      if (character.skillPoint >= 0) {
+      if (character.skillPoint >= 0 && decrementRight.health.counterClick > 0) {
         setSkills ('skillPoint', character.skillPoint + 1) ,
         setSkills('health', character.health - 1 )
+        setDecrementRight((old) => ({ ...old, health: { able: true, counterClick: decrementRight.health.counterClick - 1 } }))
       }
       break
     }
@@ -86,7 +96,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounterHealth(true)}
           onPressMinus={() => onClickCounterHealth(false)}
-          ableMinus={isNew}
+          ableMinus={decrementRight.health.able}
           value={character.health}
         />
         <p className="statCost">1 PC</p>
@@ -97,7 +107,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('attack', true)}
           onPressMinus={() => onClickCounter('attack', false)}
-          ableMinus={isNew}
+          ableMinus={decrementRight.attack.able}
           value={character.attack}
         />
         <p className="statCost">
@@ -110,7 +120,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('defense', true)}
           onPressMinus={() => onClickCounter('defense', false)}
-          ableMinus={isNew}
+          ableMinus={decrementRight.defense.able}
           value={character.defense}
         />
         <p className="statCost">
@@ -123,7 +133,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
         <Counter
           onPressPlus={() => onClickCounter('magik', true)}
           onPressMinus={() => onClickCounter('magik', false)}
-          ableMinus={isNew}
+          ableMinus={decrementRight.magik.able}
           value={character.magik}
         />
         <p className="statCost">

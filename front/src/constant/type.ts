@@ -21,3 +21,16 @@ export type SettingCharacters = {
 
   historic?: Array<FightReport>;
 }
+
+export type ReporType= {
+  finish: boolean, 
+  winner: string, 
+  attacker: {
+    attackDid: number,
+    healthLost: number
+  }, 
+  defender: {
+    attackDid: number,
+    healthLost: number
+  }
+}

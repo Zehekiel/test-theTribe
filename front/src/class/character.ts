@@ -1,4 +1,4 @@
-import { FightReport } from './fightReport'
+import { FinalReport } from './finalReport'
 
 export class Characters {
   _id: string = '';
@@ -19,7 +19,7 @@ export class Characters {
 
   lastFight: number = 0;
 
-  historic: Array<FightReport> = [];
+  historic: Array<FinalReport> = [];
 
   selected: boolean = false
 }

@@ -1,13 +1,18 @@
-import { API_URL_USER } from './../constant/env'
-import { ProviderApi } from './../constant/type'
+import { ProviderApi } from '../../constant/type'
+import { API_URL_USER } from '../../constant/env'
 
-function getCharacterList(token: string): Promise<ProviderApi> {
-  return fetch(`${API_URL_USER}/getcharacterlist`, {
+function subscription(
+  nickname: string,
+  password: string
+): Promise<ProviderApi> {
+  const body = { nickname: nickname, password: password }
+
+  return fetch(`${API_URL_USER}/adduser`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(token),
+    body: JSON.stringify(body),
   })
     .then((response) => response.json())
     .then((value: any) => {
@@ -20,9 +25,9 @@ function getCharacterList(token: string): Promise<ProviderApi> {
       return { success: false, message: value.message }
     })
     .catch((e) => {
-      console.error('error postCharacter response.json', e)
+      console.error('error subscription response.json', e)
       return { success: false, message: e }
     })
 }
 
-export default getCharacterList
+export default subscription

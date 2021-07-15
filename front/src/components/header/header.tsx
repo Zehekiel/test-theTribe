@@ -21,10 +21,10 @@ function Header() {
 
   return (
     <header className="App-header" data-testid="header">
-      <Linker to="/">
+      <Linker to={token !== '' ? '/characterList' : '/' }>
         <span className="header-title">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>React RPG Game</p>
+          <h3>React RPG Game</h3>
         </span>
       </Linker>
 

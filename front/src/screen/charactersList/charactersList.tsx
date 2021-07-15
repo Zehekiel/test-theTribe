@@ -6,14 +6,14 @@ import './characterList.css'
 import CharacterCard from '../../components/characterCard/characterCard'
 
 function CharactersList() {
-  const characterList = useAppSelector((state) => state.characterList.value)
+  const characterListStore = useAppSelector((state) => state.characterList.value)
   const history = useHistory()
 
   return (
     <main className="characterListContainer">
       <h1 id='characterListTitle'>Liste des personnages</h1>
       <ul id='list'>
-        {characterList.map((personage: Characters) => (
+        {characterListStore.map((personage: Characters) => (
           <CharacterCard 
             oneCharacter={personage} 
             key={personage._id}
@@ -22,8 +22,8 @@ function CharactersList() {
           />
         ))}
       </ul>
-      {characterList.length > 0 &&
-        <button onClick={() => history.push('/findopponent')} id='characterListCreateButton'>
+      {characterListStore.length > 0 &&
+        <button onClick={() => history.push('/findopponent')} id='characterListFightButton'>
           Combattre!
         </button>
       }

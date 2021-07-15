@@ -1,9 +1,8 @@
 .logContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
   justify-content: space-between;
-  width: 90vw;
+  min-height: 70vh;
 }
 
 .logSection {
@@ -23,11 +22,6 @@
 
 .logInput {
   padding: 0.6%;
-  color: black;
-  border-radius: 5px;
-  font-size: 1.1rem;
-
-  margin: 0.5%;
 }
 
 .logButton {

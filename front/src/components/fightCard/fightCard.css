@@ -1,43 +1,37 @@
-.characterCard {
+.fightCard {
   background-color: rgb(177, 177, 177);
-  padding: 2%;
-  min-width: 30vw;
+  padding: 2.5%;
   border-radius: 15px 0 15px 0;
-  box-shadow: 4px 4px 4px rgb(173, 36, 36);
+  box-shadow: 4px 4px 4px rgb(0, 0, 0);
   justify-content: center;
   align-items: center;
-  margin: 10px
+  margin: 15px;
+  min-width: 30vw;
 }
 
-.characterIdentity {
+.divFightCard {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.characterIdentity:first-of-type{
+.divFightCard:first-of-type{
   border-bottom: 3px solid black;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.characterIdentity:last-of-type{
-  border-top: 3px solid black;
-  padding-top: 10px;
-  margin-top: 10px;
-}
-
-
-.characterStat {
+.fightStat {
   margin: 5px;
   padding: 5px 10px;
   border-radius: 15px;
   background-color: black;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   text-align: center;
-  min-width: 6vw;
+  min-width: 8vw;
   box-shadow: 4px 4px rgba(85, 85, 85, 0.493);
 }
 
@@ -46,7 +40,3 @@
   text-shadow:2px 2px black;
 }
 
-li::marker {
-  content: none;
-  color: aqua;
-}

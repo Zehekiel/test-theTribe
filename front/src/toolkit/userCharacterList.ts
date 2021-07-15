@@ -24,7 +24,6 @@ export const characterListSlice = createSlice({
         return acc
       }, [])
       state.value = arrayReduce
-      
     },
     addCharacter: (
       state: { value: Array<any> },

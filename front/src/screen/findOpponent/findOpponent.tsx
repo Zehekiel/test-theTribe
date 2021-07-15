@@ -5,6 +5,7 @@ import { Characters } from '../../class/character'
 import CharacterCard from '../../components/characterCard/characterCard'
 import { addKeyAndValue, useAppDispatch, useAppSelector } from '../../hook'
 import { saveOpponent } from '../../toolkit/opponent'
+import { saveMyCharacter } from '../../toolkit/userCharacter'
 import './findOpponent.css'
 
 
@@ -22,22 +23,20 @@ function FindOpponent(){
     if(characterIdChoosed !== ''){
       getOpponentList(characterChoosed, characterList )
         .then(async(response)=>{
-          if(response.success){
-            const newOpponent : Characters = JSON.parse(response.message)
-            if (newOpponent._id !== undefined){
-              setOpponent(newOpponent)
-              dispatch(saveOpponent(newOpponent))
-            } else {
-              setErrorMessage('il n\'y a pas d\'adversaire disponible')  
-            }
+          const answer = await response
+          if(answer.success){
+            const newOpponent : Characters = JSON.parse(answer.message)
+            setOpponent(newOpponent)
+            dispatch(saveOpponent(newOpponent))
           } else {
-            setErrorMessage('Il y a eu un problème lors de la récupération de vos adversaires')  
+            setErrorMessage(answer.message)  
           }
         })
     } else {
-      setCharacterList(addKeyAndValue(myCharacterList, 'selected', false))
+      const characterListAvailable = myCharacterList.filter((char: Characters)=> char.lastFight < new Date().getTime() - 3600000)
+      setCharacterList(addKeyAndValue(characterListAvailable, 'selected', false))
     }
-  }, [ characterIdChoosed ])
+  }, [ characterIdChoosed, myCharacterList ])
 
   function onClickMyCharacter (index: number){
     const resetSelect = characterList.map((ch: Characters)=>{
@@ -47,8 +46,13 @@ function FindOpponent(){
     setCharacterList(resetSelect)
     setcharacterIdChoosed(characterList[index]._id)
     setcharacterChoosed(characterList[index])
-    characterList[index].selected = !characterList[index].selected
+    characterList[index].selected = true
     setCharacterList(characterList)
+  }
+
+  function onClickLaunchFight(){
+    dispatch(saveMyCharacter(characterChoosed))
+    history.push(`/fight/${characterIdChoosed}`)
   }
 
   return(
@@ -79,10 +83,10 @@ function FindOpponent(){
                 oneCharacter={opponent}
                 key={opponent._id}
                 selected={opponent.selected}
-                onClickCard={() => setcharacterIdChoosed(opponent._id)}
+                onClickCard={() => null}
               />
               <button
-                onClick={() => history.push(`/fight/${characterIdChoosed}`)}
+                onClick={() => onClickLaunchFight()}
               >
                 Lancer le combat
               </button>

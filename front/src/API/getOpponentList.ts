@@ -8,7 +8,7 @@ function getOpponentList(currentCharacter: Characters, currentCharacterList: Arr
     return acc
   }, new Array() )
 
-  const body= { 
+  const body = { 
     currentCharacter: currentCharacter,
     currentList: idUsed
   }
@@ -21,14 +21,15 @@ function getOpponentList(currentCharacter: Characters, currentCharacterList: Arr
     body: JSON.stringify(body),
   })
     .then((response) => response.json())
-    .then((value: any) => {
-      if (value.success) {
+    .then(async (value: any) => {
+      const opponent = await value
+      if (opponent.success) {
         return {
           success: true,
-          message: value.message,
+          message: opponent.message,
         }
       }
-      return { success: false, message: value.message }
+      return { success: false, message: opponent.message }
     })
     .catch((e) => {
       console.error('error postCharacter response.json', e)

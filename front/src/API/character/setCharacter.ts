@@ -1,25 +1,19 @@
-import { ProviderApi } from './../constant/type'
-import { API_URL_CHARACTER } from '../constant/env'
+import { ProviderApi, SettingCharacters } from '../../constant/type'
+import { API_URL_CHARACTER } from '../../constant/env'
 
-function postCharacter(
-  name: string,
-  health: number,
-  attack: number,
-  defense: number,
-  magik: number,
+function setCharacter(
+  id: string,
+  skills: SettingCharacters,
   token: string
 ): Promise<ProviderApi> {
   const body = {
-    name: name,
-    health: health,
-    attack: attack,
-    defense: defense,
-    magik: magik,
+    id: id,
+    skills: skills,
     token: token,
   }
 
-  return fetch(`${API_URL_CHARACTER}/addcharacter`, {
-    method: 'post',
+  return fetch(`${API_URL_CHARACTER}/setcharacter`, {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -41,4 +35,4 @@ function postCharacter(
     })
 }
 
-export default postCharacter
+export default setCharacter

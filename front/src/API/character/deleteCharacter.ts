@@ -1,26 +1,25 @@
-import { ProviderApi, SettingCharacters } from './../constant/type'
-import { API_URL_CHARACTER } from '../constant/env'
+import { ProviderApi } from '../../constant/type'
+import { API_URL_CHARACTER } from '../../constant/env'
 
-function setCharacter(
+function deleteCharacter(
   id: string,
-  skills: SettingCharacters,
   token: string
 ): Promise<ProviderApi> {
   const body = {
     id: id,
-    skills: skills,
-    token: token,
+    token: token
   }
 
-  return fetch(`${API_URL_CHARACTER}/setcharacter`, {
-    method: 'PATCH',
+
+  return fetch(`${API_URL_CHARACTER}/deletecharacter`, {
+    method: 'delete',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   })
     .then((response) => response.json())
-    .then((value: any) => {
+    .then((value: ProviderApi) => {
       if (value.success) {
         return {
           success: true,
@@ -35,4 +34,4 @@ function setCharacter(
     })
 }
 
-export default setCharacter
+export default deleteCharacter

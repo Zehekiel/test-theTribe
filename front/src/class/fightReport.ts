@@ -1,9 +1,23 @@
 export class FightReport {
   turnCount: number = 1 // (start at 1)
 
-  attacksValue: number = 0 // Attack's value for both characters
+  finish: boolean = false
 
-  healthPointSubstracted: number = 0 // Health point substracted for both characters
+  winner: string= '' 
 
-  result: 'win' | 'loose' = 'loose'
+  attacker: {
+    attackDid: number,
+    healthLost: number
+  } = {
+    attackDid: 0,
+    healthLost: 0
+  }
+
+  defender: {
+    attackDid: number,
+    healthLost: number
+  } = {
+    attackDid: 0,
+    healthLost: 0
+  }
 }

@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { useAppDispatch } from '../../hook'
-import subscription from '../../API/subscription'
+import { addKeyAndValue, useAppDispatch } from '../../hook'
+import subscription from '../../API/user/subscription'
 import { User } from '../../class/user'
 import ErrorText from '../../components/errorText/errorText'
 import { saveToken } from '../../toolkit/userToken'
 import './logInLogOut.css'
-import '../global.css'
 
 import { BreakPoint, isLargerThan } from '../../constant/breakpoint'
 import { saveList } from '../../toolkit/userCharacterList'
 import { ProviderApi } from '../../constant/type'
-import logIn from '../../API/login'
+import logIn from '../../API/user/login'
 import { UserApi } from '../../class/userApi'
 
 function LogInLogOut() {
@@ -93,7 +92,7 @@ function LogInLogOut() {
             const user: UserApi = JSON.parse(apiresponse.message)
             setErrorLogMessage('')
             dispatch(saveToken(user.token))
-            dispatch(saveList(user.characterId))
+            dispatch(saveList(addKeyAndValue([ ... user.characterId ], 'selected', false)))
             history.push('/characterlist')
           } else {
             setErrorLogMessage(apiresponse.message)
@@ -108,7 +107,6 @@ function LogInLogOut() {
       className="logContainer"
       style={{
         flexDirection: isLargerThan(BreakPoint.Mobile) ? 'row' : 'column',
-        height: isLargerThan(BreakPoint.Mobile) ? '80vh' : 'auto',
       }}
     >
       <section className="logSection">

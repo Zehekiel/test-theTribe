@@ -12,7 +12,8 @@
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "JSX": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -36,6 +37,7 @@
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "object-curly-spacing": ["error", "always"],
     "array-bracket-spacing": ["error", "always"],
-    "eol-last": 2
+    "eol-last": 2,
+    "space-infix-ops": ["error", { "int32Hint": true }]
   }
 }

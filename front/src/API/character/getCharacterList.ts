@@ -1,15 +1,13 @@
-import { ProviderApi } from './../constant/type'
-import { API_URL_USER } from '../constant/env'
+import { API_URL_USER } from '../../constant/env'
+import { ProviderApi } from '../../constant/type'
 
-function logIn(nickname: string, password: string): Promise<ProviderApi> {
-  const body = { nickname: nickname, password: password }
-
-  return fetch(`${API_URL_USER}/login`, {
+function getCharacterList(token: string): Promise<ProviderApi> {
+  return fetch(`${API_URL_USER}/getcharacterlist`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(token),
   })
     .then((response) => response.json())
     .then((value: any) => {
@@ -22,9 +20,9 @@ function logIn(nickname: string, password: string): Promise<ProviderApi> {
       return { success: false, message: value.message }
     })
     .catch((e) => {
-      console.error('error subscription response.json', e)
+      console.error('error postCharacter response.json', e)
       return { success: false, message: e }
     })
 }
 
-export default logIn
+export default getCharacterList

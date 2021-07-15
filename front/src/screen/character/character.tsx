@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import deleteCharacter from '../../API/deleteCharacter'
-import postCharacter from '../../API/postCharacter'
-import setCharacter from '../../API/setCharacter'
+import deleteCharacter from '../../API/character/deleteCharacter'
+import postCharacter from '../../API/character/postCharacter'
+import setCharacter from '../../API/character/setCharacter'
 import { Characters } from '../../class/character'
+import { FinalReport } from '../../class/finalReport'
 import ErrorText from '../../components/errorText/errorText'
+import FightCard from '../../components/fightCard/fightCard'
 import SkillsDispatcher from '../../components/skillsDispatcher/skillsDispatcher'
 import { SettingCharacters } from '../../constant/type'
 import { useAppDispatch, useAppSelector } from '../../hook'
@@ -12,8 +14,8 @@ import { addCharacter, deleteOneCharacter, setList } from '../../toolkit/userCha
 import './character.css'
 
 function Character() {
-  const [ newCharacter, setNewCharacter ]= useState<Characters>(new Characters())
-  const [ originalCharacter, setOriginalCharacter ]= useState<Characters>(new Characters()) 
+  const [ newCharacter, setNewCharacter ] = useState<Characters>(new Characters())
+  const [ originalCharacter, setOriginalCharacter ] = useState<Characters>(new Characters()) 
 
   const [ errorMessage, setErrorMessage ] = useState('')
 
@@ -31,7 +33,7 @@ function Character() {
     if(isNewCharacter){
       setNewCharacter(new Characters())
     } else {
-      const findCharacter: Array<Characters>= characterList.filter((character: Characters) => {
+      const findCharacter: Array<Characters> = characterList.filter((character: Characters) => {
         if(character._id.localeCompare(characterId) === 0){
           return character
         }
@@ -83,16 +85,16 @@ function Character() {
       let body : SettingCharacters = {}
 
       if (newCharacter.attack !== originalCharacter.attack){
-        body['attack']= newCharacter.attack
+        body['attack'] = newCharacter.attack
       }
       if (newCharacter.defense !== originalCharacter.defense){
-        body['defense']= newCharacter.defense
+        body['defense'] = newCharacter.defense
       }
       if (newCharacter.health !== originalCharacter.health){
-        body['health']= newCharacter.health
+        body['health'] = newCharacter.health
       }
       if (newCharacter.magik !== originalCharacter.magik){
-        body['magik']= newCharacter.magik
+        body['magik'] = newCharacter.magik
       }
 
       await setCharacter(
@@ -126,7 +128,7 @@ function Character() {
 
   return (
     <main className="newCharacterContainer">
-      <h1>{isNewCharacter? 'Personnaliser un nouveau personnage' : 'Modifier ce personnage'}</h1>
+      <h1>{isNewCharacter ? 'Personnaliser un nouveau personnage' : 'Modifier ce personnage'}</h1>
       <p>
         Vous avez{' '}
         <strong>
@@ -155,14 +157,27 @@ function Character() {
       />
 
       <ErrorText text={errorMessage} />
-      <button className="saveButton" onClick={() => isNewCharacter? saveNewCharacter() : onClickSetCharacter()}>
-        {isNewCharacter? 'Sauvegarder' : 'Sauvegarder les modifications'}
+      <button className="saveButton" onClick={() => isNewCharacter ? saveNewCharacter() : onClickSetCharacter()}>
+        {isNewCharacter ? 'Sauvegarder' : 'Sauvegarder les modifications'}
       </button>
 
       {!isNewCharacter &&
         <button className="deleteButton" onClick={() => onClickDeleteCharacter()}>
           Supprimer ce personnage
         </button>
+      }
+
+      {
+        newCharacter.historic.length > 0 &&
+        <article className='fightreportlistcontainer'>
+          <h2>Historique des combats</h2>
+          <section className='fightreportlist' >
+            {newCharacter.historic.map((report: FinalReport)=>(
+              <FightCard oneReport={report} />
+            ))}
+          </section>
+        </article>
+
       }
 
     </main>

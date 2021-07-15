@@ -17,12 +17,15 @@ router.post('/getopponentlist', async function(req, res, next) {
   .limit(limit)
   .then((answer)=>{
     const randomIndex= Math.floor(Math.random()*answer.length)
-    res.json({success: true, message: JSON.stringify(answer[randomIndex])})
+    if(answer[randomIndex] !== undefined){
+      res.json({success: true, message: JSON.stringify(answer[randomIndex])})
+    }
+    res.json({success: false, message: "Pas de combattant disponible"})
   })
   .catch((e)=> {
     console.error('error getopponentlist', e)
     res.json({success: false, message: "Problème lors de la création d'un personnage"})
   })
-});
+})
 
 module.exports = router;

@@ -76,19 +76,18 @@ router.delete('/deletecharacter', async function(req, res) {
 router.patch('/setcharacter', async function(req, res) {
   await characterModel.updateOne(
     {_id: ObjectID(req.body.id)},
+    
     {
       $set: req.body.skills
     }
   )
   .then(()=>{
-      res.json({success: true, message: 'Personnage modifié'})
+    res.json({success: true, message: 'Personnage modifié'})
   })
   .catch((e)=> {
-    console.error('error addcharacter', e)
-    res.header("Access-Control-Allow-Origin", "*")
+    console.error('error setcharacter', e)
     res.json({success: false, message: "Problème lors de la modification du personnage"})
   })
 });
-
 
 module.exports = router;

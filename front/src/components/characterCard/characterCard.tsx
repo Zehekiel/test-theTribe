@@ -1,9 +1,17 @@
 import React from 'react'
 import { Characters } from '../../class/character'
-import { GiSwordman } from 'react-icons/gi'
-import { RiZzzFill } from 'react-icons/ri'
+import { GoPrimitiveDot } from 'react-icons/go'
+import {
+  GiDeathSkull,
+  GiHealthNormal,
+  GiPiercingSword,
+  GiShield,
+  GiTrophyCup
+} from 'react-icons/gi'
+import { ImMagicWand } from 'react-icons/im'
 
 import './characterCard.css'
+import { FinalReport } from '../../class/finalReport'
 
 function CharacterCard(props: { 
   oneCharacter: Characters,
@@ -21,6 +29,7 @@ function CharacterCard(props: {
     magik,
     level,
     lastFight,
+    historic
   } = props.oneCharacter
   const { selected, onClickCard } = props
 
@@ -32,40 +41,57 @@ function CharacterCard(props: {
     }
   }
 
+  const { victory, lost }: { victory: number, lost: number } = historic.reduce(
+    (accumulator: { victory: number, lost: number }, current: FinalReport)=>{
+      if (current.isWinner){
+        accumulator.victory++
+      } else {
+        accumulator.lost++
+      }
+      return accumulator
+    }, { victory: 0, lost: 0 })
+
   return (
-    <li className="characterCard" style={{ boxShadow: selected? '0px 0px 2px 4px lightgreen' : 'unset' }}>
-      <article onClick={()=> onClickCard()}>
-        <section className="characterIdentity" id="identity">
-          <h2 id="characterName">{name}</h2>
-          <p className="characterStat">
+    <li 
+      className="characterCard" 
+      style={{ boxShadow: selected ? '0px 0px 2px 4px lightgreen' : '3px 3px black' }}
+      onClick={()=> onClickCard()}
+    >
+      <section className="characterIdentity" id="identity">
+        <h2 id="characterName">{name}</h2>
+        <p className="characterStat">
             LVL <strong>{level}</strong>{' '}
-          </p>
-          <p className="characterStat">PC {skillPoint}</p>
-          {available() ? (
-            <GiSwordman color="lightgreen" id="icon" size="2em" />
-          ) : (
-            <RiZzzFill color="red" id="icon" size="2em" />
-          )}
-        </section>
+        </p>
+        <GoPrimitiveDot color={available() ? 'green' : 'red'} className="icon" size="2em" />
+      </section>
 
-        <section className="characterIdentity">
-          <p className="characterStat">
-            PV <strong>{health}</strong>
-          </p>
-          <p className="characterStat">
-            PM <strong>{magik}</strong>
-          </p>
-        </section>
+      <section className="characterIdentity">
+        <p className="characterStat">
+          <GiHealthNormal color="red" size="1em" /> <strong>{health}</strong>
+        </p>
+        <p className="characterStat">
+          <ImMagicWand color="#1489ff" size="1em" /> <strong>{magik}</strong>
+        </p>
+      </section>
 
-        <section className="characterIdentity">
-          <p className="characterStat">
-            ATT <strong>{attack}</strong>
-          </p>
-          <p className="characterStat">
-            DEF <strong>{defense}</strong>
-          </p>
-        </section>
-      </article>
+      <section className="characterIdentity" id="identity">
+        <p className="characterStat">
+          <GiPiercingSword color="white" size="1.1em" /> <strong>{attack}</strong>
+        </p>
+        <p className="characterStat">
+          <GiShield color="grey" size="1.1em" /> <strong>{defense}</strong>
+        </p>
+      </section>
+      <section className="characterIdentity">
+        <p className="characterStat">PC {skillPoint}</p>
+        <p className="characterStat">
+          <strong>{victory}</strong> <GiTrophyCup color="yellow" size="1em" /> 
+          / 
+          <strong>{lost}</strong><GiDeathSkull color="white" size="1em" /> 
+        </p>
+      </section>
+
+
     </li>
   )
 }
