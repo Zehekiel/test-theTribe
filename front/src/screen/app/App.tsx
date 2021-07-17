@@ -15,25 +15,23 @@ function App() {
     <>
       <Router history={history}>
         <Header />
-        <main>
-          <Switch>
-            <Route exact path="/">
-              <LogInLogOut />
-            </Route>
-            <Route path="/characterlist">
-              <CharactersList />
-            </Route>
-            <Route path="/character/:id">
-              <Character />
-            </Route>
-            <Route path="/findopponent">
-              <FindOpponent />
-            </Route>
-            <Route path="/fight/:id">
-              <Figth />
-            </Route>
-          </Switch>
-        </main>
+        <Switch>
+          <Route exact path="/">
+            <LogInLogOut />
+          </Route>
+          <Route path="/characterlist">
+            <CharactersList />
+          </Route>
+          <Route path="/character/:id">
+            <Character />
+          </Route>
+          <Route path="/findopponent">
+            <FindOpponent />
+          </Route>
+          <Route path="/fight/:id">
+            <Figth />
+          </Route>
+        </Switch>
       </Router>
     </>
   )

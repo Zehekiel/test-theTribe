@@ -4,8 +4,8 @@ import getOpponentList from '../../API/getOpponentList'
 import { Characters } from '../../class/character'
 import CharacterCard from '../../components/characterCard/characterCard'
 import { addKeyAndValue, useAppDispatch, useAppSelector } from '../../hook'
-import { saveOpponent } from '../../toolkit/opponent'
-import { saveMyCharacter } from '../../toolkit/userCharacter'
+import { saveOpponent } from '../../toolkit/opponent/opponent'
+import { saveMyCharacter } from '../../toolkit/userCharacter/userCharacter'
 import './findOpponent.css'
 
 
@@ -36,6 +36,9 @@ function FindOpponent(){
       const characterListAvailable = myCharacterList.filter((char: Characters)=> char.lastFight < new Date().getTime() - 3600000)
       setCharacterList(addKeyAndValue(characterListAvailable, 'selected', false))
     }
+    return () => {
+      setOpponent(new Characters())
+    }
   }, [ characterIdChoosed, myCharacterList ])
 
   function onClickMyCharacter (index: number){
@@ -56,10 +59,10 @@ function FindOpponent(){
   }
 
   return(
-    <>
+    <main>
       <h1>Trouver un combattant</h1>
-      <div className='findOpponentContainer'>
-        <article className='mainColumn'>
+      <article className='findOpponentContainer'>
+        <section className='mainColumn'>
           <ul>
             {characterList.map((personage: Characters, i: number) => (
               <CharacterCard 
@@ -70,13 +73,13 @@ function FindOpponent(){
               />
             ))}
           </ul>
-        </article>
+        </section>
 
-        <article className='separator'>
+        <section className='separator'>
           <h2 id='versus' >VS</h2>
-        </article>
+        </section>
 
-        <article className='mainColumn'>
+        <section className='mainColumn'>
           {opponent.name !== '' ?
             <>
               <CharacterCard
@@ -94,10 +97,10 @@ function FindOpponent(){
             :
             <p>{errorMessage}</p>
           }
-        </article>
+        </section>
 
-      </div>
-    </>
+      </article>
+    </main>
   )
 }
 

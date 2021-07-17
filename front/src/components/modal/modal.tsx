@@ -12,20 +12,25 @@ function Modal  ( props: ModalProps) {
   const { isShowing,  hide, title, children } = props
   
   return (
-    <div className="modal-overlay" style={{ display: isShowing ? 'block' : 'none' }} >
+    <div 
+      className="modal-overlay" 
+      style={{ display: isShowing ? 'block' : 'none' }}
+      data-testid='modal-overlay'
+    >
       <div className="modal-wrapper">
         <div className="modal">
           <div className="modal-header">
-            <h4>{title}</h4>
+            <h4 data-testid='modal-title'>{title}</h4>
             <button
               type="button"
               className="modal-close-button"
               onClick={hide}
+              data-testid='modal-close-button'
             >
               <span>&times;</span>
             </button>
           </div>
-          <div className="modal-body">{children}</div>
+          <div className="modal-body" data-testid='modal-body'>{children}</div>
         </div>
       </div>
     </div>

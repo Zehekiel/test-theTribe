@@ -89,7 +89,7 @@ function SkillsDispatcher(props: SkillsDispatcherProps) {
 
 
   return (
-    <section className="newCharacterContainer">
+    <section className="skillsDispatcherContainer">
 
       <div className="stat">
         <p className="statName">Santé </p>

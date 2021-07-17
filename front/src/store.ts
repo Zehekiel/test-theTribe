@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import characterListSlice from './toolkit/userCharacterList'
-import tokenSlice from './toolkit/userToken'
-import opponentSlice from './toolkit/opponent'
-import myCharacterListSlice from './toolkit/userCharacter'
+import characterListSlice from './toolkit/userCharacterList/userCharacterList'
+import tokenSlice from './toolkit/userToken/userToken'
+import opponentSlice from './toolkit/opponent/opponent'
+import myCharacterListSlice from './toolkit/userCharacter/userCharacter'
 
 const store = configureStore({
   reducer: {

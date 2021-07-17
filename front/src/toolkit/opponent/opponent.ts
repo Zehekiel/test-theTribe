@@ -1,17 +1,20 @@
-import { Characters } from '../class/character'
+import { Characters } from '../../class/character'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+const Character = new Characters()
+const basicOpponent =  { ...Character }
 
 export const opponentSlice = createSlice({
   name: 'characterList',
   initialState: {
-    value: new Characters()
+    value: basicOpponent
   },
   reducers: {
     saveOpponent: (state, action: PayloadAction<Characters>) => {
-      state.value = action.payload
+      state.value = { ...action.payload, ['selected']: false }
     },
     deleteOpponent: (state) => {
-      state.value = new Characters()
+      state.value = basicOpponent
     },
   },
 })

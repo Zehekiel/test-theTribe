@@ -5,11 +5,11 @@ import { addKeyAndValue, useAppDispatch } from '../../hook'
 import subscription from '../../API/user/subscription'
 import { User } from '../../class/user'
 import ErrorText from '../../components/errorText/errorText'
-import { saveToken } from '../../toolkit/userToken'
+import { saveToken } from '../../toolkit/userToken/userToken'
 import './logInLogOut.css'
 
 import { BreakPoint, isLargerThan } from '../../constant/breakpoint'
-import { saveList } from '../../toolkit/userCharacterList'
+import { saveList } from '../../toolkit/userCharacterList/userCharacterList'
 import { ProviderApi } from '../../constant/type'
 import logIn from '../../API/user/login'
 import { UserApi } from '../../class/userApi'
@@ -50,7 +50,6 @@ function LogInLogOut() {
       await subscription(newUser.nickname, newUser.password).then(
         (apiresponse) => {
           if (apiresponse.success) {
-            //save token
             setErrorSubscriptionMessage('')
             dispatch(saveToken(apiresponse.message))
             history.push('/characterlist')
@@ -119,6 +118,7 @@ function LogInLogOut() {
             setUserLog((old) => ({ ...old, nickname: e.target.value }))
           }
           className="logInput"
+          data-testid='logInNickname'
         />
         <input
           type="password"
@@ -128,6 +128,8 @@ function LogInLogOut() {
             setUserLog((old) => ({ ...old, password: e.target.value }))
           }
           className="logInput"
+          data-testid='logInPassword'
+
         />
         <ErrorText text={errorLogMessage} />
         <button className="logButton" onClick={() => onClickLogIn()}>
@@ -145,6 +147,7 @@ function LogInLogOut() {
             setNewUser((old) => ({ ...old, nickname: e.target.value }))
           }
           className="logInput"
+          data-testid='subscriptionNickname'
         />
         <input
           type="password"
@@ -154,6 +157,7 @@ function LogInLogOut() {
             setNewUser((old) => ({ ...old, password: e.target.value }))
           }
           className="logInput"
+          data-testid='subscriptionPassword'
         />
         <ErrorText text={errorSubscriptionMessage} />
         <button className="logButton" onClick={() => onClickSubscription()}>

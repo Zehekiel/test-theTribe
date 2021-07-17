@@ -68,7 +68,6 @@ function updateCharactersAfterFight(
       return { success: false, message: e }
     })
 
-
   return fetch(`${API_URL_CHARACTER}/setcharacter`, {
     method: 'PATCH',
     headers: {

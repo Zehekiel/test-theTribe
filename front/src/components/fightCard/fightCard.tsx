@@ -27,9 +27,19 @@ function FightCard(props: {
     >
       <div className="divFightCard">
         {isWinner ? 
-          <GiTrophyCup color="yellow" size="3.5em" className='iconVictory' />
+          <GiTrophyCup 
+            color="#fff600"
+            size="3.5em"
+            className='iconVictory'
+            data-testid= 'trophyCup'
+          />
           :
-          <GiDeathSkull color="white" size="3.5em" className='iconVictory' /> 
+          <GiDeathSkull
+            color="white"
+            size="3.5em"
+            className='iconVictory'
+            data-testid= 'deathSkull'
+          /> 
         }
       </div>
 

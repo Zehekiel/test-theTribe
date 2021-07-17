@@ -8,7 +8,7 @@ import CharacterCard from '../../components/characterCard/characterCard'
 import ErrorText from '../../components/errorText/errorText'
 import Modal from '../../components/modal/modal'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { setList } from '../../toolkit/userCharacterList'
+import { setList } from '../../toolkit/userCharacterList/userCharacterList'
 import '../findOpponent/findOpponent.css'
 import './fight.css'
 
@@ -71,6 +71,7 @@ function Fight (){
       report.attacker.attackDid = MyCharacterAttak.att
       report.defender.healthLost = MyCharacterAttak.total
       setMyCharacter((state) => ({ ... state, level: state.level + 1 }))
+      setMyCharacter((state) => ({ ... state, health: myCharacterStore.health }))
       setMyCharacter((state) => ({ ... state, skillPoint: state.skillPoint + 1 }))
       setMyCharacter((state) => ({ ... state, historic: [ 
         ...state.historic, { 
@@ -103,7 +104,10 @@ function Fight (){
       report.winner = opponent.name
       report.defender.attackDid = opponentAttak.att
       report.attacker.healthLost = opponentAttak.total
-      setMyCharacter((state) => ({ ... state, level: state.level - 1 }))
+      if(myCharacter.level > 1){
+        setMyCharacter((state) => ({ ... state, level: state.level - 1 }))
+      }
+      setMyCharacter((state) => ({ ... state, health: myCharacterStore.health }))
       setMyCharacter((state) => ({ ... state, lastFight: new Date().getTime() }))
       setWinner({ id: opponent._id, name: opponent.name })
       setMyCharacter((state) => ({ ... state, historic: [ 
@@ -145,9 +149,9 @@ function Fight (){
       })
   }
   return(
-    <main>
+    <main className='mainFigthContainer'>
       <h1>COMBAT!!!</h1>
-      <h3>Tour {turn}</h3>
+      <h2>Tour {turn}</h2>
 
       <Modal
         isShowing={reportModal}

@@ -10,7 +10,7 @@ function CharactersList() {
   const history = useHistory()
 
   return (
-    <main className="characterListContainer">
+    <main className="characterListContainer" data-testid='characterListContainer'>
       <h1 id='characterListTitle'>Liste des personnages</h1>
       <ul id='list'>
         {characterListStore.map((personage: Characters) => (

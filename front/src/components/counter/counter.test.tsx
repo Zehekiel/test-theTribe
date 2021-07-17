@@ -45,7 +45,7 @@ describe('change value', () => {
     const { getAllByTestId } = render(
       <Counter onPressPlus={mock} onPressMinus={decrement} value={value} ableMinus={true}/>
     )
-    await waitFor(async () =>
+    await waitFor(() =>
       expect(getAllByTestId('counter-value')[1]).toHaveTextContent('0')
     )
   })
@@ -59,7 +59,7 @@ describe('change value', () => {
     const { getAllByTestId } = render(
       <Counter onPressPlus={mock} onPressMinus={decrement} value={value} ableMinus={false}/>
     )
-    await waitFor(async () =>
+    await waitFor(() =>
       expect(getAllByTestId('counter-value')[1]).toHaveTextContent('0')
     )
   })

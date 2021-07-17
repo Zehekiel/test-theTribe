@@ -56,13 +56,19 @@ function CharacterCard(props: {
       className="characterCard" 
       style={{ boxShadow: selected ? '0px 0px 2px 4px lightgreen' : '3px 3px black' }}
       onClick={()=> onClickCard()}
+      data-testid='characterCard'
     >
       <section className="characterIdentity" id="identity">
         <h2 id="characterName">{name}</h2>
         <p className="characterStat">
             LVL <strong>{level}</strong>{' '}
         </p>
-        <GoPrimitiveDot color={available() ? 'green' : 'red'} className="icon" size="2em" />
+        <GoPrimitiveDot 
+          color={available() ? 'green' : 'red'} 
+          className="icon" 
+          size="2em"
+          data-testid='primitiveDot'
+        />
       </section>
 
       <section className="characterIdentity">
@@ -85,12 +91,11 @@ function CharacterCard(props: {
       <section className="characterIdentity">
         <p className="characterStat">PC {skillPoint}</p>
         <p className="characterStat">
-          <strong>{victory}</strong> <GiTrophyCup color="yellow" size="1em" /> 
+          <strong data-testid='winCount'>{victory}</strong> <GiTrophyCup color="yellow" size="1em" /> 
           / 
-          <strong>{lost}</strong><GiDeathSkull color="white" size="1em" /> 
+          <strong data-testid='losCount'> {lost}</strong><GiDeathSkull color="white" size="1em" /> 
         </p>
       </section>
-
 
     </li>
   )

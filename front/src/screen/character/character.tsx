@@ -10,7 +10,7 @@ import FightCard from '../../components/fightCard/fightCard'
 import SkillsDispatcher from '../../components/skillsDispatcher/skillsDispatcher'
 import { SettingCharacters } from '../../constant/type'
 import { useAppDispatch, useAppSelector } from '../../hook'
-import { addCharacter, deleteOneCharacter, setList } from '../../toolkit/userCharacterList'
+import { addCharacter, deleteOneCharacter, setList } from '../../toolkit/userCharacterList/userCharacterList'
 import './character.css'
 
 function Character() {
@@ -129,15 +129,6 @@ function Character() {
   return (
     <main className="newCharacterContainer">
       <h1>{isNewCharacter ? 'Personnaliser un nouveau personnage' : 'Modifier ce personnage'}</h1>
-      <p>
-        Vous avez{' '}
-        <strong>
-          {newCharacter.skillPoint}{' '}
-          {newCharacter.skillPoint === 0 ? 'point' : 'points'} de compétence
-          (PC)
-        </strong>{' '}
-        à répartir entre les différentes statistiques{' '}
-      </p>
       <input
         type="text"
         placeholder="Nom du personnage"
@@ -148,6 +139,13 @@ function Character() {
         id="inputName"
         disabled={!isNewCharacter}
       />
+      <h2>
+        <strong>
+          {newCharacter.skillPoint}{' '}
+          {newCharacter.skillPoint === 0 ? 'point' : 'points'} de compétence
+          (PC)
+        </strong>{' '}
+      </h2>
 
       <SkillsDispatcher 
         character={newCharacter}
@@ -157,6 +155,7 @@ function Character() {
       />
 
       <ErrorText text={errorMessage} />
+
       <button className="saveButton" onClick={() => isNewCharacter ? saveNewCharacter() : onClickSetCharacter()}>
         {isNewCharacter ? 'Sauvegarder' : 'Sauvegarder les modifications'}
       </button>
@@ -170,14 +169,13 @@ function Character() {
       {
         newCharacter.historic.length > 0 &&
         <article className='fightreportlistcontainer'>
-          <h2>Historique des combats</h2>
+          <h1>Historique des combats</h1>
           <section className='fightreportlist' >
-            {newCharacter.historic.map((report: FinalReport)=>(
-              <FightCard oneReport={report} />
+            {newCharacter.historic.map((report: FinalReport, i: number)=>(
+              <FightCard oneReport={report} key={`${report.opponentName}${i}`} />
             ))}
           </section>
         </article>
-
       }
 
     </main>
