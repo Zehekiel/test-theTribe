@@ -10,7 +10,7 @@ type ModalProps= {
 
 function Modal  ( props: ModalProps) {
   const { isShowing,  hide, title, children } = props
-  
+
   return (
     <div 
       className="modal-overlay" 
