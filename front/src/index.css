@@ -24,6 +24,7 @@ button{
   padding: 0.4vh 1.5vw;
   margin-top: 2.5vh;
   background-color: black;
+  box-shadow: 2px 3px rgba(133, 133, 133, 0.589);
 }
 
 input{
@@ -37,6 +38,7 @@ input{
 
 h1{
   text-shadow: 2px 2px black;
+  text-align: center;
 }
 
 main{

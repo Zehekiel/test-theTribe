@@ -1,12 +1,12 @@
 .characterCard {
   background-color: rgb(177, 177, 177);
-  padding: 2%;
-  min-width: 30vw;
+  padding: 1%;
+  min-width: 20vw;
   border-radius: 15px 0 15px 0;
   box-shadow: 4px 4px 4px rgb(173, 36, 36);
   justify-content: center;
   align-items: center;
-  margin: 10px
+  margin: 4% 2% 2%
 }
 
 .characterIdentity {
@@ -27,7 +27,6 @@
   padding-top: 10px;
   margin-top: 10px;
 }
-
 
 .characterStat {
   margin: 5px;

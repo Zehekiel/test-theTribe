@@ -43,6 +43,7 @@
 .modal-close-button {
   font-weight: 700;
   color: rgb(255, 255, 255);
+  box-shadow: none;
   cursor: pointer;
   border: none;
   margin: 0;

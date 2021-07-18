@@ -37,6 +37,7 @@ function FindOpponent(){
       setCharacterList(addKeyAndValue(characterListAvailable, 'selected', false))
     }
     return () => {
+
       setOpponent(new Characters())
     }
   }, [ characterIdChoosed, myCharacterList ])

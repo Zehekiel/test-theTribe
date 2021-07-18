@@ -14,8 +14,7 @@
 }
 
 #characterListFightButton {
-  background-color: rgb(141, 1, 1);
-  color: rgb(255, 255, 255);
+  box-shadow: 2px 2px red;
 }
 
 #list{

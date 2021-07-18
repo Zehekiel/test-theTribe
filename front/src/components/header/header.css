@@ -20,6 +20,7 @@
 .header-button {
   background-color: #da0000;
   margin-top: 0;
+  box-shadow: none;
 }
 
 .App-logo {
