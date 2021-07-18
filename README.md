@@ -3,21 +3,17 @@ before all, check if you have :
 - node installed https://nodejs.org/en/download/
 - yarn is installed https://yarnpkg.com/getting-started/install
 	
-##In the project directory, you can runback:
+## In the project directory, you can runback:
 
 ### yarn
 install package
 
-### nodemon 
-
-or
-
-### yarn start
+### nodemon OR yarn start
 launch backend
 
 **I left MongoDB authenfication for more convenience**
 
-##then launch front:
+## then launch front:
 
 ### yarn
 install package
